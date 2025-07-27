@@ -8,7 +8,7 @@ st.title("💼 Data Science, AI & ML Job Salaries – 2025")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("salaries.csv")
+    return pd.read_csv("streamlit_app/salaries.csv")
 
 df = load_data()
 
