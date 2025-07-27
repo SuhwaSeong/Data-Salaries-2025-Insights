@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -12,9 +11,17 @@ def load_data():
 
 df = load_data()
 
+# 🧭 Sidebar filter FIRST
+st.sidebar.header("Filter Options")
+location_filter = st.sidebar.selectbox("Select Company Location:", ["All"] + sorted(df["company_location"].unique().tolist()))
+if location_filter != "All":
+    df = df[df["company_location"] == location_filter]
+
+# 📊 Summary statistics
 st.subheader("📊 Summary Statistics")
 st.write(df.describe())
 
+# 💵 Job title salary chart
 st.subheader("💵 Average Salary by Job Title (Top 15)")
 top_jobs = df.groupby("job_title")["salary_in_usd"].mean().sort_values(ascending=False).head(15).reset_index()
 fig1 = px.bar(top_jobs, x="salary_in_usd", y="job_title", orientation="h",
@@ -22,13 +29,10 @@ fig1 = px.bar(top_jobs, x="salary_in_usd", y="job_title", orientation="h",
 fig1.update_layout(yaxis=dict(autorange="reversed"))
 st.plotly_chart(fig1, use_container_width=True)
 
-st.sidebar.header("Filter Options")
-location_filter = st.sidebar.selectbox("Select Company Location:", ["All"] + sorted(df["company_location"].unique().tolist()))
-if location_filter != "All":
-    df = df[df["company_location"] == location_filter]
-
+# 🧠 Experience level salary chart
 st.subheader("🧠 Average Salary by Experience Level")
 exp_salary = df.groupby("experience_level")["salary_in_usd"].mean().reset_index()
 fig2 = px.bar(exp_salary, x="experience_level", y="salary_in_usd",
               title="Average Salary by Experience Level", color="salary_in_usd")
 st.plotly_chart(fig2, use_container_width=True)
+
