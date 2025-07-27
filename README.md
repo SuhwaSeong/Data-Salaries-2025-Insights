@@ -8,53 +8,68 @@ This project analyzes 2025 job salaries in Data Science, AI, and Machine Learnin
 
 - **Dataset**: 2025 Data Science, AI & ML Job Salaries (`salary.json`)
 - **Tools Used**:
-  - Python (Jupyter Notebook): EDA, visualizations
-  - Power BI: Interactive dashboard
-  - Streamlit: Web app for audio-based classification demo
-- **Goal**: Explore how salaries vary by title, location, experience, and company size
+  - **Python (Jupyter Notebook)** – for exploratory data analysis and visualizations
+  - **Power BI** – for an interactive business-style dashboard
+  - **Streamlit** – for a public web app summarizing key insights
+- **Goal**: Explore how salaries vary by job title, location, experience level, and company size in the tech industry
 
 ---
 
-## 📂 Contents
+## 📂 Project Structure
 
 | File/Folder | Description |
 |-------------|-------------|
-| `salary.json` | Raw dataset |
-| `Data_Salaries_2025_Analysis.ipynb` | Python notebook with full analysis |
-| `PowerBI_Report/` | `.pbix` Power BI interactive report |
-| `streamlit_app/` | Code and assets for Streamlit deployment |
+| `salary.json` | Original dataset |
+| `Data_Salaries_2025_Analysis.ipynb` | Jupyter notebook with EDA and plots |
+| `PowerBI_Report/` | `.pbix` Power BI dashboard |
+| `streamlit_app/` | Streamlit app code and `salaries.csv` |
 | `README.md` | Project documentation |
-| `requirements.txt` | Python dependencies |
-| `.gitignore` | Files to exclude from Git |
+| `requirements.txt` | Python dependency list |
+| `.gitignore` | Files and folders excluded from Git |
 
 ---
 
-## 📈 Sample Visualizations
+## 📈 Key Insights Visualized
 
-- Average salary by job title and location
-- Salary distribution by experience level
-- Top-paying companies and job categories
-
----
-
-## 🌐 Streamlit App (optional)
-
-> [Click to open Streamlit demo](https://your-app-url.streamlit.app) ← 업데이트 필요
+- Top 15 highest-paying job titles in AI/ML
+- Salary distribution by experience level (Entry, Mid, Senior, Executive)
+- Salary differences by location and company size
+- Remote ratio comparison across roles
 
 ---
 
-## 📌 How to Run Locally
+## 🌐 Try the Streamlit App
 
-1. Clone this repo  
-   `git clone https://github.com/yourusername/Data-Salaries-2025-Insights.git`
-2. Install dependencies  
-   `pip install -r requirements.txt`
-3. Run Streamlit  
-   `cd streamlit_app`  
-   `streamlit run app.py`
+👉 [**Launch Streamlit Demo**](https://data-salaries-2025-insights-kpni7ykddpdmeqpkqj5fbq.streamlit.app)
+
+The app summarizes key statistics and visualizations interactively. Built using `pandas`, `plotly`, and `streamlit`.
+
+---
+
+## 🧪 How to Run Locally
+
+1. Clone this repository  
+   ```bash
+   git clone https://github.com/SuhwaSeong/Data-Salaries-2025-Insights.git
+````
+
+2. Install required packages
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Launch the Streamlit app
+
+   ```bash
+   cd streamlit_app
+   streamlit run app.py
+   ```
 
 ---
 
 ## 🔖 License
 
 This project is for educational and portfolio purposes only.
+Please do not use the dataset for commercial applications.
+
+```
