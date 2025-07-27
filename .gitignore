@@ -21,7 +21,6 @@ Thumbs.db
 *.h5
 *.tflite
 *.keras
-*.csv
 
 # Power BI
 *.pbix
