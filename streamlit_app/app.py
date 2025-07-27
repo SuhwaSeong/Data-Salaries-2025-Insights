@@ -11,17 +11,41 @@ def load_data():
 
 df = load_data()
 
-# 🧭 Sidebar filter FIRST
-st.sidebar.header("Filter Options")
-location_filter = st.sidebar.selectbox("Select Company Location:", ["All"] + sorted(df["company_location"].unique().tolist()))
+# ------------------------
+# 🔍 Sidebar Filter Options
+# ------------------------
+st.sidebar.header("🧭 Filter Options")
+
+# Location Filter
+location_filter = st.sidebar.selectbox("🌍 Company Location", ["All"] + sorted(df["company_location"].unique()))
 if location_filter != "All":
     df = df[df["company_location"] == location_filter]
 
-# 📊 Summary statistics
+# Experience Level Filter
+experience_filter = st.sidebar.multiselect(
+    "🎓 Experience Level", df["experience_level"].unique(), default=df["experience_level"].unique()
+)
+df = df[df["experience_level"].isin(experience_filter)]
+
+# Remote Ratio Filter
+remote_filter = st.sidebar.multiselect(
+    "💻 Remote Ratio", df["remote_ratio"].unique(), default=df["remote_ratio"].unique()
+)
+df = df[df["remote_ratio"].isin(remote_filter)]
+
+# Company Size Filter
+company_size_filter = st.sidebar.multiselect(
+    "🏢 Company Size", df["company_size"].unique(), default=df["company_size"].unique()
+)
+df = df[df["company_size"].isin(company_size_filter)]
+
+# ------------------------
+# 📊 Visualizations
+# ------------------------
 st.subheader("📊 Summary Statistics")
 st.write(df.describe())
 
-# 💵 Job title salary chart
+# Top 15 Job Titles by Average Salary
 st.subheader("💵 Average Salary by Job Title (Top 15)")
 top_jobs = df.groupby("job_title")["salary_in_usd"].mean().sort_values(ascending=False).head(15).reset_index()
 fig1 = px.bar(top_jobs, x="salary_in_usd", y="job_title", orientation="h",
@@ -29,10 +53,9 @@ fig1 = px.bar(top_jobs, x="salary_in_usd", y="job_title", orientation="h",
 fig1.update_layout(yaxis=dict(autorange="reversed"))
 st.plotly_chart(fig1, use_container_width=True)
 
-# 🧠 Experience level salary chart
+# Average Salary by Experience Level
 st.subheader("🧠 Average Salary by Experience Level")
 exp_salary = df.groupby("experience_level")["salary_in_usd"].mean().reset_index()
 fig2 = px.bar(exp_salary, x="experience_level", y="salary_in_usd",
               title="Average Salary by Experience Level", color="salary_in_usd")
 st.plotly_chart(fig2, use_container_width=True)
-
